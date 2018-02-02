@@ -4,9 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -86,11 +84,13 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-//        Fragment fragment = null;
-        if (id == R.id.nav_camera) {
-            //fragment = new BlankFragment();
-        } else if (id == R.id.nav_gallery) {
+        Fragment fragment = null;
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
+        if (id == R.id.nav_camera) {
+            fragment = new Tab1();
+        } else if (id == R.id.nav_gallery) {
+            fragment = new Tab2();
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
@@ -100,6 +100,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_send) {
 
         }
+
+        if(fragment != null) fragmentTransaction.replace(R.id.container,fragment).commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
