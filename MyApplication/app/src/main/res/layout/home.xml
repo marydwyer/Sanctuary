@@ -1,0 +1,35 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.root.myapplication.Home">
+
+    <!-- TODO: Update blank fragment layout -->
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center">
+    <Button
+        android:id="@+id/messaging_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Network"
+        android:layout_gravity="center"/>
+    <Button
+        android:id="@+id/journey_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Journey"
+        android:layout_gravity="center"/>
+    <Button
+        android:id="@+id/emergency_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Emergency"
+        android:layout_gravity="center"/>
+</LinearLayout>
+
+
+
+</FrameLayout>
