@@ -3,10 +3,15 @@ package com.example.root.myapplication;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 
 /**
@@ -28,6 +33,12 @@ public class Emergency extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private static TextView countdownLabel;
+
+    //For the timer:
+    private CountDownTimer emergencyCountDown;
+    private boolean timerIsRunning = false;
 
     public Emergency() {
         // Required empty public constructor
@@ -59,6 +70,42 @@ public class Emergency extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
+    {
+        countdownLabel = (TextView) view.findViewById(R.id.countdown_labal);
+        Button countdownButton = (Button) getView().findViewById(R.id.countdown_emergency_button);
+        countdownButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                countdownLabel.setVisibility(View.VISIBLE);
+                if(!timerIsRunning) {
+                    emergencyCountDown = new CountDownTimer(11000, 1000) {
+                        @Override
+                        public void onTick(long l) {
+                            timerIsRunning = true;
+                            int currentTime = Integer.parseInt(countdownLabel.getText().toString());
+                            currentTime--;
+                            countdownLabel.setText("" + currentTime);
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            timerIsRunning = false;
+                            countdownLabel.setText("11");
+                            countdownLabel.setVisibility(View.INVISIBLE);
+                        }
+                    }.start();
+                }else {
+                    emergencyCountDown.cancel();
+                    emergencyCountDown.onFinish();
+                }
+
+            }
+        });
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
