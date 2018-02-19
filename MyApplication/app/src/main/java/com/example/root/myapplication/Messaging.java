@@ -3,6 +3,7 @@ package com.example.root.myapplication;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -87,6 +88,11 @@ public class Messaging extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstance){
+        getView().setOnTouchListener(((MainActivity)getActivity()).touchListener);
     }
 
     /**

@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -75,7 +76,6 @@ public class Home extends Fragment {
     {
         //Add the proper listeners to all of the buttons:
 
-        //Messaging:
         ((Button)getView().findViewById(R.id.messaging_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,6 +94,8 @@ public class Home extends Fragment {
                 ((MainActivity)getActivity()).changeTabs(MainActivity.TabView.emergency);
             }
         });
+
+        getView().setOnTouchListener(((MainActivity)getActivity()).touchListener);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -132,4 +134,6 @@ public class Home extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
 }

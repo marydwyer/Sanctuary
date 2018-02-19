@@ -104,6 +104,7 @@ public class Emergency extends Fragment {
 
             }
         });
+        getView().setOnTouchListener(((MainActivity)getActivity()).touchListener);
     }
 
 
