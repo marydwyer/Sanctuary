@@ -10,12 +10,14 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_gravity="center">
-    <Button
+    <ImageButton
         android:id="@+id/messaging_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Network"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:src="@mipmap/ic_network"
+        android:background="@android:color/transparent" />
     <Button
         android:id="@+id/journey_button"
         android:layout_width="wrap_content"

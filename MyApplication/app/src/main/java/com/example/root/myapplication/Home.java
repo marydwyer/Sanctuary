@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 
 /**
@@ -76,7 +77,7 @@ public class Home extends Fragment {
     {
         //Add the proper listeners to all of the buttons:
 
-        ((Button)getView().findViewById(R.id.messaging_button)).setOnClickListener(new View.OnClickListener() {
+        ((ImageButton)getView().findViewById(R.id.messaging_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((MainActivity)getActivity()).changeTabs(MainActivity.TabView.messaging);
