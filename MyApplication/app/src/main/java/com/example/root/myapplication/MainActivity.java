@@ -80,6 +80,9 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         //Set the first fragment to home:
         changeTabs(TabView.home);
+
+        getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_logo);
+        toolbar.setNavigationIcon(R.mipmap.ic_logo);
     }
 
     @Override

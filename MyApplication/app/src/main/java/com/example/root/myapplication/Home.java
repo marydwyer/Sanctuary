@@ -83,13 +83,13 @@ public class Home extends Fragment {
                 ((MainActivity)getActivity()).changeTabs(MainActivity.TabView.messaging);
             }
         });
-        ((Button)getView().findViewById(R.id.journey_button)).setOnClickListener(new View.OnClickListener() {
+        ((ImageButton)getView().findViewById(R.id.journey_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((MainActivity)getActivity()).changeTabs(MainActivity.TabView.journey);
             }
         });
-        ((Button)getView().findViewById(R.id.emergency_button)).setOnClickListener(new View.OnClickListener() {
+        ((ImageButton)getView().findViewById(R.id.emergency_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((MainActivity)getActivity()).changeTabs(MainActivity.TabView.emergency);

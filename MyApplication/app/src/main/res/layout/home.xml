@@ -10,6 +10,20 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_gravity="center">
+
+    <ImageView
+        android:layout_width="@android:dimen/thumbnail_width"
+        android:layout_height="@android:dimen/thumbnail_height"
+        android:layout_gravity="center"
+        android:src="@mipmap/ic_home" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mary Dwyer"
+        android:layout_gravity="center"
+        android:textSize="18dp"/>
+
     <ImageButton
         android:id="@+id/messaging_button"
         android:layout_width="wrap_content"
@@ -18,18 +32,43 @@
         android:layout_gravity="center"
         android:src="@mipmap/ic_network"
         android:background="@android:color/transparent" />
-    <Button
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Friends"
+        android:layout_gravity="center"/>
+
+    <ImageButton
         android:id="@+id/journey_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Journey"
+        android:layout_gravity="center"
+        android:src="@mipmap/ic_journey"
+        android:background="@android:color/transparent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Journey"
         android:layout_gravity="center"/>
-    <Button
+
+    <ImageButton
         android:id="@+id/emergency_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Emergency"
+        android:layout_gravity="center"
+        android:src="@mipmap/ic_emergency"
+        android:background="@android:color/transparent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Emergency"
         android:layout_gravity="center"/>
+
 </LinearLayout>
 
 
