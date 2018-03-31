@@ -13,6 +13,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/journey_cv"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            app:cardElevation="10dp">
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/journey_tb"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#E91E63"
+                app:layout_collapseMode="pin">
+                <Button
+                    android:id="@+id/canceljourney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cancel"/>
+            </android.support.v7.widget.Toolbar>
+        </android.support.v7.widget.CardView>
+
+
+    </LinearLayout>
+    </RelativeLayout>
+
 </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>

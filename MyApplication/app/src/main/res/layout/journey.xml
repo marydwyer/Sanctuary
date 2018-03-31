@@ -4,10 +4,25 @@
     android:layout_height="match_parent"
     tools:context="com.example.root.myapplication.Journey">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="I'm the map I'm the map I'm the map!!" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TimePicker
+            android:id="@+id/timePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/startJourney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start Journey"
+            android:layout_gravity="right"/>
+
+    </LinearLayout>
+
+
 
 </FrameLayout>

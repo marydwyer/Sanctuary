@@ -8,12 +8,15 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -25,6 +28,8 @@ public class MainActivity extends AppCompatActivity
         right, left, up, down
     }
 
+    public boolean bJourneySet = false;
+
     private TabView currentTab = TabView.home;
 
     ////////Used for the swiping:
@@ -33,6 +38,10 @@ public class MainActivity extends AppCompatActivity
     public View.OnTouchListener touchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View view, MotionEvent event) {
+
+            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            if(imm.isAcceptingText()) imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+
             switch(event.getAction())
             {
                 case MotionEvent.ACTION_DOWN:
@@ -83,6 +92,19 @@ public class MainActivity extends AppCompatActivity
 
         getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_logo);
         toolbar.setNavigationIcon(R.mipmap.ic_logo);
+
+        Log.e("Ughugh","Penois");
+            ((Button) findViewById(R.id.canceljourney)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.e("Ughugh","Whahhh");
+                    bJourneySet = false;
+                    changeTabs(MainActivity.TabView.journey);
+                }
+            });
+
+        CardView journey_cv = (CardView) findViewById(R.id.journey_cv);
+        journey_cv.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -163,6 +185,8 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = null;
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
+        if(bJourneySet) ((CardView) findViewById(R.id.journey_cv)).setVisibility(View.VISIBLE);
+
         switch (tv) {
             case home:
                 fragment = new Home();
@@ -172,6 +196,7 @@ public class MainActivity extends AppCompatActivity
             case messaging:
                 fragment = new Messaging();
                 currentTab = TabView.messaging;
+                ((CardView) findViewById(R.id.journey_cv)).setVisibility(View.INVISIBLE);
                 break;
 
             case journey:

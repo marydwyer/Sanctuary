@@ -5,10 +5,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toolbar;
 
 
 /**
@@ -69,13 +71,6 @@ public class Journey extends Fragment {
         return inflater.inflate(R.layout.journey, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -95,6 +90,22 @@ public class Journey extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstance){
         getView().setOnTouchListener(((MainActivity)getActivity()).touchListener);
+
+            ((Button)getView().findViewById(R.id.startJourney)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                        try{
+                    MainActivity act = (MainActivity) getActivity();
+                    android.support.v7.widget.Toolbar journey_tb = (android.support.v7.widget.Toolbar) act.findViewById(R.id.journey_tb);
+                    //journey_tb.setBackgroundColor(0xFFFFFF);
+                    act.bJourneySet = true;
+                    act.changeTabs(MainActivity.TabView.journey);
+                        }catch (Exception e){
+                            Log.e("Ugh",e.getLocalizedMessage());
+                        }
+
+                }
+            });
     }
 
     /**
