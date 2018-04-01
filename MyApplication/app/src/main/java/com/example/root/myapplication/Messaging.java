@@ -5,9 +5,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 
 /**
@@ -27,6 +32,8 @@ public class Messaging extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private int textOrder = 1;
 
     private OnFragmentInteractionListener mListener;
 
@@ -68,13 +75,6 @@ public class Messaging extends Fragment {
         return inflater.inflate(R.layout.messaging, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -93,6 +93,27 @@ public class Messaging extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstance){
         getView().setOnTouchListener(((MainActivity)getActivity()).touchListener);
+        ((Button)getView().findViewById(R.id.button_chatbox_send)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity act = (MainActivity) getActivity();
+                EditText eText = act.findViewById(R.id.edittext_chatbox);
+                String message = eText.getText().toString();
+
+                if(message != ""){
+                    Log.e("Success",message);
+                    RelativeLayout ll = act.findViewById(R.id.chatbox);
+                    TextView tv = new TextView(act);
+                    tv.setText(message);
+                    tv.setId(textOrder);
+                    RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                    p.addRule(RelativeLayout.ALIGN_BOTTOM, tv.getId());
+                    ll.addView(tv, p);
+                    textOrder++;
+                }
+
+                }
+        });
     }
 
     public interface OnFragmentInteractionListener {

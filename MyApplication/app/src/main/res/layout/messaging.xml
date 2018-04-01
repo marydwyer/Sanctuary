@@ -31,6 +31,22 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>
 
+        <RelativeLayout
+            android:id="@+id/chatbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="hi man, how are you?"
+                android:background="#FFFFFF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:layout_marginTop="4dp"/>
+
+        </RelativeLayout>
+
+
         <LinearLayout
             android:id="@+id/layout_chatbox"
             android:layout_width="0dp"
