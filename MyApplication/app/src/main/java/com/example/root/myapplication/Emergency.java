@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
 
 
@@ -75,7 +76,7 @@ public class Emergency extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
     {
         countdownLabel = (TextView) view.findViewById(R.id.countdown_labal);
-        Button countdownButton = (Button) getView().findViewById(R.id.countdown_emergency_button);
+        final Switch countdownButton = (Switch) getView().findViewById(R.id.countdown_emergency_button);
         countdownButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -95,6 +96,7 @@ public class Emergency extends Fragment {
                             timerIsRunning = false;
                             countdownLabel.setText("11");
                             countdownLabel.setVisibility(View.INVISIBLE);
+                            countdownButton.setChecked(false);
                         }
                     }.start();
                 }else {
