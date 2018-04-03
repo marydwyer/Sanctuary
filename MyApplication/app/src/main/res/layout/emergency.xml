@@ -8,13 +8,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp">
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:text="EMERGENCY:"
-            android:layout_gravity="center_horizontal"/>
+            android:textColor="#FF0000"
+            android:textSize="50dp" />
 
         <TextView
             android:id="@+id/countdown_labal"
@@ -27,11 +31,19 @@
 
     </LinearLayout>
 
-    <ToggleButton
+
+    <Switch
         android:id="@+id/countdown_emergency_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Emergency SOS"
         android:layout_gravity="center"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stop"
+        android:layout_gravity="bottom|center_horizontal"/>
 
 
 </FrameLayout>
