@@ -32,18 +32,62 @@
     </LinearLayout>
 
 
-    <Switch
-        android:id="@+id/countdown_emergency_button"
+    <ImageButton
+        android:id="@+id/emergency_stop_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Emergency SOS"
-        android:layout_gravity="center"/>
+        android:src="@mipmap/ic_stop"
+        android:background="@android:color/transparent"
+        android:layout_gravity="bottom|center_horizontal"
+        android:paddingBottom="10dp"
+        android:visibility="invisible"/>
 
-    <Button
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Stop"
-        android:layout_gravity="bottom|center_horizontal"/>
+        android:layout_gravity="center">
 
+        <ImageView
+            android:layout_width="@android:dimen/thumbnail_width"
+            android:layout_height="@android:dimen/thumbnail_height"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_switch_on"/>
+
+        <ImageView
+            android:id="@+id/countdown_emergency_button"
+            android:layout_width="@android:dimen/thumbnail_width"
+            android:layout_height="@android:dimen/thumbnail_height"
+            android:src="@mipmap/ic_switch_off"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/cancel_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#C0000000"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal|bottom">
+
+            <Button
+                android:id="@+id/emergency_stop_stop"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:text="Stop Notifying Emergency Contacts"/>
+
+            <Button
+                android:id="@+id/emergency_stop_cancel"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:text="Cancel"/>
+
+        </LinearLayout>
+
+
+    </FrameLayout>
 
 </FrameLayout>

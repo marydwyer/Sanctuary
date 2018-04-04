@@ -1,6 +1,8 @@
 package com.example.root.myapplication;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -8,11 +10,16 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import java.io.File;
 
 
 /**
@@ -72,15 +79,23 @@ public class Emergency extends Fragment {
         }
     }
 
+    //Bad practice, but this method declares the listeners for most of the button on the screen (ie most of the functionality)
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
     {
         countdownLabel = (TextView) view.findViewById(R.id.countdown_labal);
-        final Switch countdownButton = (Switch) getView().findViewById(R.id.countdown_emergency_button);
-        countdownButton.setOnClickListener(new View.OnClickListener(){
+        final ImageView emergencyStopButton = (ImageView) getView().findViewById(R.id.emergency_stop_button);
+        final ImageView countdownButton = (ImageView) getView().findViewById(R.id.countdown_emergency_button);
+        final FrameLayout cancel_frame = (FrameLayout) getView().findViewById(R.id.cancel_frame);
+        final Button emergency_stop_stop = (Button) getView().findViewById(R.id.emergency_stop_stop);
+        final Button emergency_stop_cancel = (Button) getView().findViewById(R.id.emergency_stop_cancel);
+
+        countdownButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view){
+            public boolean onTouch(View view, MotionEvent motionEvent) {
                 countdownLabel.setVisibility(View.VISIBLE);
+                countdownButton.setVisibility(View.INVISIBLE);
+                emergencyStopButton.setVisibility(View.VISIBLE);
                 if(!timerIsRunning) {
                     emergencyCountDown = new CountDownTimer(11000, 1000) {
                         @Override
@@ -96,14 +111,40 @@ public class Emergency extends Fragment {
                             timerIsRunning = false;
                             countdownLabel.setText("11");
                             countdownLabel.setVisibility(View.INVISIBLE);
-                            countdownButton.setChecked(false);
+                            countdownButton.setVisibility(View.VISIBLE);
+                            emergencyStopButton.setVisibility(View.INVISIBLE);
+                            cancel_frame.setVisibility(View.INVISIBLE);
                         }
                     }.start();
                 }else {
                     emergencyCountDown.cancel();
                     emergencyCountDown.onFinish();
                 }
-
+                return false;
+            }
+        });
+        emergencyStopButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cancel_frame.setVisibility(View.VISIBLE);
+            }
+        });
+        emergency_stop_stop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Copied and pasted from OnFinish method above ^
+                timerIsRunning = false;
+                countdownLabel.setText("11");
+                countdownLabel.setVisibility(View.INVISIBLE);
+                countdownButton.setVisibility(View.VISIBLE);
+                emergencyStopButton.setVisibility(View.INVISIBLE);
+                cancel_frame.setVisibility(View.INVISIBLE);
+            }
+        });
+        emergency_stop_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cancel_frame.setVisibility(View.INVISIBLE);
             }
         });
         getView().setOnTouchListener(((MainActivity)getActivity()).touchListener);
